@@ -139,6 +139,7 @@ class ControlModule(torch.nn.Module):
         super().__init__()
         self.block: torch.nn.Module = block
         if hasattr(block, "attention_type"): self.attention_type = block.attention_type
+        elif hasattr(block, "block"): self.attention_type = block.block.attention_type
         self.params: BlockControlParams = BlockControlParams.default()
 
     def set_control(self, params: BlockControlParams) -> None:
